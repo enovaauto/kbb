@@ -6,9 +6,10 @@ class Kbb::Client
     @savon_client ||= Savon::Client.new do |wsdl, http, wsse, wsa|
       endpoint = opts[:endpoint] || SERVICE_ENDPOINT
       wsdl.document = "#{endpoint}?wsdl"
+      wsdl.endpoint = endpoint
       wsdl.namespace = "http://www.kbb.com/2011/01/25/VehicleInformationService"
       wsse.credentials(username, password)
-      http.headers["Host"] = URI(endpoint).host || opts[:host]
+      http.headers["Host"] = opts[:host] || URI(endpoint).host
       http.auth.ssl.verify_mode = :none
     end
   end
