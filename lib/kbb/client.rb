@@ -97,7 +97,7 @@ private
   def get_trims_and_vehicle_ids_by_year_and_model_response(response)
     response = response[:get_trims_and_vehicle_ids_by_year_and_model_response]
     if response
-      to_ary(response[:get_trims_and_vehicle_ids_by_year_and_model_result][:vehicle_trim]).each do |trim|
+      to_ary(response[:get_trims_and_vehicle_ids_by_year_and_model_result][:vehicle_trim]).map do |trim|
         {:trim => trim[:display_name], :trim_id => trim[:id], :vehicle_id => trim[:vehicle_id]}
       end
     else []
