@@ -8,7 +8,7 @@ class Kbb::Client
       wsdl.document = "#{endpoint}?wsdl"
       wsdl.namespace = "http://www.kbb.com/2011/01/25/VehicleInformationService"
       wsse.credentials(username, password)
-      http.headers["Host"] = URI(SERVICE_ENDPOINT).host
+      http.headers["Host"] = URI(endpoint).host
       http.auth.ssl.verify_mode = :none
     end
   end
