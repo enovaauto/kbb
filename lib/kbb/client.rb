@@ -51,7 +51,7 @@ private
   def get_makes_by_year_response(response)
     response = response[:get_makes_by_year_response]
     if response
-      Array(response[:get_makes_by_year_result][:id_string_pair]).map do |make| 
+      to_ary(response[:get_makes_by_year_result][:id_string_pair]).map do |make| 
         {:make => make[:value], :make_id => make[:id]}
       end
     else []
@@ -74,7 +74,7 @@ private
   def get_models_by_year_and_make_response(response)
     response = response[:get_models_by_year_and_make_response]
     if response
-      Array(response[:get_models_by_year_and_make_result][:id_string_pair]).map do |model|
+      to_ary(response[:get_models_by_year_and_make_result][:id_string_pair]).map do |model|
         {:model => model[:value], :model_id => model[:id]}
       end
     else []
@@ -97,7 +97,7 @@ private
   def get_trims_and_vehicle_ids_by_year_and_model_response(response)
     response = response[:get_trims_and_vehicle_ids_by_year_and_model_response]
     if response
-      Array(response[:get_trims_and_vehicle_ids_by_year_and_model_result][:vehicle_trim]).each do |trim|
+      to_ary(response[:get_trims_and_vehicle_ids_by_year_and_model_result][:vehicle_trim]).each do |trim|
         {:trim => trim[:display_name], :trim_id => trim[:id], :vehicle_id => trim[:vehicle_id]}
       end
     else []
@@ -136,6 +136,12 @@ private
       end; values
     else {}
     end
+  end
+
+# helpers
+
+  def to_ary(o)
+    [o].flatten
   end
 
 end
