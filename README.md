@@ -22,26 +22,26 @@ Or install it yourself as:
 
 Set up a client with your credentials:
 
-settings:
-  password: 'password'
-  username: 'username'
-  endpoint: 'http://209.67.183.60/3.0/VehicleInformationService.svc'
-  host: 'sample.idws.syndication.kbb.com'
+    settings:
+      password: 'password'
+      username: 'username'
+      endpoint: 'http://209.67.183.60/3.0/VehicleInformationService.svc'
+      host: 'sample.idws.syndication.kbb.com'
 
-KelleyBlueBook = Kbb::Client.new(settings['username'], settings['password'], :endpoint => settings['endpoint'], :host => settings['host'])
+      KelleyBlueBook = Kbb::Client.new(settings['username'], settings['password'], :endpoint => settings['endpoint'], :host => settings['host'])
 
 Make calls:
 
-KelleyBlueBook.get_makes_by_year(1999)
-=> [{:make=>"Acura", :make_id=>"2"}, {:make=>"Audi", :make_id=>"4"}, {:make=>"BMW", :make_id=>"5"}, {:make=>"Buick", :make_id=>"7"} ...
+      KelleyBlueBook.get_makes_by_year(1999)
+      => [{:make=>"Acura", :make_id=>"2"}, {:make=>"Audi", :make_id=>"4"}, {:make=>"BMW", :make_id=>"5"}, {:make=>"Buick", :make_id=>"7"} ...
 
 ### With Retries
 
 The service occasionally times out or returns invalid data.  Use Kbb::Client.with_retries to try again when that happens:
 
-Kbb::Client.with_retries(3) do
-  KelleyBlueBook.get_makes_by_year(1999)
-end
+      Kbb::Client.with_retries(3) do
+        KelleyBlueBook.get_makes_by_year(1999)
+      end
 
 
 ## Contributing
