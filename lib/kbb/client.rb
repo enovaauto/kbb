@@ -2,6 +2,14 @@ class Kbb::Client
 
   SERVICE_ENDPOINT = "https://idws.syndication.kbb.com/3.0/VehicleInformationService.svc"
 
+  def self.with_retries(attempts = 3, &block)
+    attempts.times do
+      @result = yield
+      break if @result.present?
+    end
+    @result
+  end
+
   def initialize(username, password, opts = {})
     @savon_client ||= Savon::Client.new do |wsdl, http, wsse, wsa|
       endpoint = opts[:endpoint] || SERVICE_ENDPOINT

@@ -6,7 +6,7 @@ require 'kbb/version'
 Gem::Specification.new do |gem|
   gem.name          = "kbb"
   gem.version       = Kbb::VERSION
-  gem.authors       = ["Alex Skryl"]
+  gem.authors       = ["Sean Corbett", "Alex Skryl"]
   gem.email         = ["rut216@gmail.com"]
   gem.description   = %q{Kelley Blue Book API Wrapper}
   gem.summary       = %q{A Wrapper for the Kelley Blue Book API}
@@ -20,4 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "savon_wsa"
   gem.add_dependency "activesupport"
 
+  gem.add_development_dependency "rake"
+  gem.add_development_dependency "rspec"
 end
